@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Images list {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="../assets/gallery.css" />
+{% endblock %}
+
+{% block content %}
+    <h1> Images gallery</h1>
+    <p class="c-gallery__description">Show images from endpoint:&nbsp; <b>https://picsum.photos/v2/list</b></p>
+    <div class="c-gallery__image-ctn">
+        {% for image in images_list %}
+            <div class="c-gallery__image-ctn-item">
+                <img src="{{image.download_url}}" alt="{{'image n°' ~ image.id}}" width="300px" height="300px">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

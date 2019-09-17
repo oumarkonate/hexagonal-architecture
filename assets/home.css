@@ -1,0 +1,24 @@
+.c-home__description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-home__ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-home__ctn-btn {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    border-radius: 12px;
+
+}

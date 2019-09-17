@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home page{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="../assets/home.css" />
+{% endblock %}
+
+{% block content %}
+    <h1>Home page</h1>
+    <p class="c-home__description">WELCOME !</p>
+    <div class="c-home__ctn">
+        <a class="c-home__ctn-btn" href="/gallery-images/">Click to access to images</a>
+    </div>
+{% endblock %}

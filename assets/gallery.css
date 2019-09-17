@@ -1,0 +1,14 @@
+.c-gallery__description {
+    display: flex;
+    justify-content: center;
+}
+
+.c-gallery__image-ctn {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 120px;
+}
+
+.c-gallery__image-ctn-item {
+    margin: 10px 10px;
+}
