@@ -10,14 +10,19 @@ final class GalleryDriver implements GalleryDriverInterface
     /** @var ApiClientInterface */
     private $client;
 
+    /** @var UriBuilderInterface */
+    private $uriBuilder;
+
     /**
      * GalleryDriver constructor.
      *
      * @param ApiClientInterface $client
+     * @param UriBuilderInterface $uriBuilder
      */
-    public function __construct(ApiClientInterface $client)
+    public function __construct(ApiClientInterface $client, UriBuilderInterface $uriBuilder)
     {
         $this->client = $client;
+        $this->uriBuilder = $uriBuilder;
     }
 
     /**
@@ -25,9 +30,7 @@ final class GalleryDriver implements GalleryDriverInterface
      */
     public function findAll(array $options): array
     {
-        $uri = sprintf('https://picsum.photos/v2/list?%s', http_build_query($options));
-
-        $contents = $this->client->retrieve($uri);
+        $contents = $this->client->retrieve($this->uriBuilder->build($options));
 
         return \json_decode($contents);
     }

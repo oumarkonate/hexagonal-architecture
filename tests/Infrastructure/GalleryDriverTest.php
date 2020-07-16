@@ -4,6 +4,8 @@ namespace App\Tests\Infrastructure;
 
 use App\Infrastructure\ApiClientInterface;
 use App\Infrastructure\GalleryDriver;
+use App\Infrastructure\UriBuilder;
+use App\Infrastructure\UriBuilderInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -27,6 +29,13 @@ class GalleryDriverTest extends TestCase
 
         $contents = '[{"field":"1"},{"field":"2"}]';
 
+        $uriBuilder = $this->createMock(UriBuilderInterface::class);
+        $uriBuilder
+            ->expects($this->once())
+            ->method('build')
+            ->willReturn('https://picsum.photos/v2/list?page=2&limit=2')
+        ;
+
         $client = $this->createMock(ApiClientInterface::class);
         $client
             ->expects($this->once())
@@ -35,7 +44,7 @@ class GalleryDriverTest extends TestCase
             ->willReturn($contents)
         ;
 
-        $galleryDriver = new GalleryDriver($client);
+        $galleryDriver = new GalleryDriver($client, $uriBuilder);
 
         $this->assertEquals($galleryContentsList, $galleryDriver->findAll(['page' => 2, 'limit' => 2]));
     }

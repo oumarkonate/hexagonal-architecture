@@ -9,6 +9,7 @@ use App\Domain\GalleryManager;
 use App\Infrastructure\ApiClient;
 use App\Infrastructure\GalleryDriver;
 use App\Infrastructure\GalleryRepository;
+use App\Infrastructure\UriBuilder;
 use GuzzleHttp\Client;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -28,11 +29,9 @@ class Application
 
         // Instanciate dependencies
         $apiClient = new ApiClient(new Client(), $logger);
-
-        $galeryDriver = new GalleryDriver($apiClient);
-
+        $uriBuilder = new UriBuilder();
+        $galeryDriver = new GalleryDriver($apiClient, $uriBuilder);
         $repository = new GalleryRepository($galeryDriver);
-
         $manager = new GalleryManager($repository);
 
         // Define route
